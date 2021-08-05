@@ -2,27 +2,36 @@
     <div class="resultados">
         <div class="resultado">
             <h2 class="resultado__titulo">IP ADDRESS</h2>
-            <p>--</p>
+            <p>{{data.ip || "--"}}</p>
         </div>
         <div class="resultado">
             <h2 class="resultado__titulo">LOCATION</h2>
-            <p>--</p>
+            <p>{{data.direccion || "--"}}</p>
         </div>
         <div class="resultado">
             <h2 class="resultado__titulo">TIMEZONE</h2>
-            <p>--</p>
+            <p>{{ data.zonaHoraria || "--"}}</p>
         </div>
         <div class="resultado">
             <h2 class="resultado__titulo">ISP</h2>
-            <p>--</p>
+            <p>{{data.isp || "--"}}</p>
         </div>
     </div>
 </template>
 
 <script>
+    import { useStore } from 'vuex'
+    import {computed} from 'vue'
 
     export default {
-        name: "Resultados"
+        name: "Resultados",
+        setup() {
+            const store = useStore()
+
+            return {
+                data : computed(() => store.state.busqueda)
+            }
+        }
     }
 </script>
 
