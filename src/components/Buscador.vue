@@ -1,19 +1,32 @@
 <template>
     <form class="buscador">
         <input class="buscador__input" 
+               v-model="busquedaUsuario"
                placeholder="Search for any IP Address or domain" 
                type="text"
         />
-        <button class="buscador__boton">
+        <button class="buscador__boton"
+                @click.prevent="obtenerDatos">
                 <img src="../../public/img/icon-arrow.svg">
         </button>
     </form>
 </template>
 
 <script>
+    import { useStore } from 'vuex'
+    import { ref } from 'vue'
 
     export default {
-        name: "Buscador"
+        name: "Buscador",
+        setup() {
+            const store = useStore()
+            const busquedaUsuario = ref(null)
+
+            return {
+                obtenerDatos : () => store.dispatch('obtenerDatos', busquedaUsuario.value),
+                busquedaUsuario,
+            }
+        }
     }
 </script>
 
