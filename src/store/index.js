@@ -37,9 +37,10 @@ export default createStore({
   },
   actions: {
     async obtenerDatos({ commit, state }, busqueda) {
+      if(state.errorBusqueda) state.errorBusqueda = false
+
       let response
       let url =`https://geo.ipify.org/api/v1?apiKey=${VUE_APP_API_KEY}`
-
       try {
         if(isIp(busqueda)) {
           response = await fetch(`${url}&ipAddress=${busqueda}`)
