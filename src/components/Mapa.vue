@@ -3,14 +3,27 @@
 </template>
 
 <script>
-    import { ref, onMounted } from "vue"
+    import { ref, onMounted, watch } from "vue"
+    import { useStore } from "vuex"
 
     export default {
         setup() {
+            const store = useStore()
             const containerMapa = ref(null)
             const openImage = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
             const openLink = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             let mapa
+
+            watch(() => store.state.busqueda.coordenadas , (coordenadas, prev) => {
+                mapa.setView(coordenadas, 13)
+                L.marker(coordenadas).addTo(mapa)
+                L.circle(coordenadas, {
+                    color: 'dodgerblue',
+                    fillColor: 'dodgerblue',
+                    fillOpacity: 0.5,
+                    radius: 500
+                }).addTo(mapa);
+            } )
 
             onMounted(() => {
                 mapa = L.map(containerMapa.value)
