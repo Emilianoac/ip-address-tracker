@@ -46,6 +46,8 @@
         align-items: center;
         max-width: 400px;
         width: 100%;
+        position: relative;
+        z-index: 2;
 
         .buscador__input,
         .buscador__boton {
