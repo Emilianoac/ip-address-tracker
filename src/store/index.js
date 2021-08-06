@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import isIp from 'is-ip'
 const {VUE_APP_API_KEY} = process.env
 
 export default createStore({
@@ -21,8 +22,15 @@ export default createStore({
   },
   actions: {
     async obtenerDatos({ commit }, busqueda) {
+      let response
+      let url =`https://geo.ipify.org/api/v1?apiKey=${VUE_APP_API_KEY}`
+      
       try {
-        const response = await fetch(`https://geo.ipify.org/api/v1?apiKey=${VUE_APP_API_KEY}&domain=${busqueda}`)
+        if(isIp(busqueda)) {
+          response = await fetch(`${url}&ipAddress=${busqueda}`)
+        } else {
+          response = await fetch(`${url}&domain=${busqueda}`)
+        }
         const json = await response.json()
         return commit("establecerDatos", json)
       } catch (error) {
