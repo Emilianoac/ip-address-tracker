@@ -10,21 +10,33 @@ export default createStore({
       direccion: "",
       zonaHoraria: "",
       isp: "",
-      coordenadas : [],
+      coordenadas: [],
     },
+    errorBusqueda: false
   },
   mutations: {
     establecerDatos(state, data) {
-      state.busqueda.ip = data.ip,
-      state.busqueda.direccion = `${data.location.country}, ${data.location.region}, ${data.location.city}`
-      state.busqueda.zonaHoraria = data.location.timezone
-      state.busqueda.isp = data.isp
-      state.busqueda.coordenadas = []
-      state.busqueda.coordenadas.push(data.location.lat, data.location.lng)
+
+      if(state.errorBusqueda) {
+        state.busqueda.ip = ""
+        state.busqueda.direccion = ""
+        state.busqueda.zonaHoraria = ""
+        state.busqueda.isp = ""
+      } else {
+        state.busqueda.ip = data.ip,
+        state.busqueda.direccion = `${data.location.country}, ${data.location.region}, ${data.location.city}`
+        state.busqueda.zonaHoraria = data.location.timezone
+        state.busqueda.isp = data.isp
+        state.busqueda.coordenadas = []
+        state.busqueda.coordenadas.push(data.location.lat, data.location.lng)
+      }
+    },
+    manejarError(state) {
+      state.errorBusqueda = false
     }
   },
   actions: {
-    async obtenerDatos({ commit }, busqueda) {
+    async obtenerDatos({ commit, state }, busqueda) {
       let response
       let url =`https://geo.ipify.org/api/v1?apiKey=${VUE_APP_API_KEY}`
 
@@ -37,7 +49,8 @@ export default createStore({
         const json = await response.json()
         return commit("establecerDatos", json)
       } catch (error) {
-        return console.log(error)
+        state.errorBusqueda = true
+        return commit("establecerDatos")
       }
     }
   },

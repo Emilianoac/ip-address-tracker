@@ -1,4 +1,5 @@
 <template>
+    <div>
     <form class="buscador">
         <input class="buscador__input" 
                v-model="busquedaUsuario"
@@ -10,20 +11,28 @@
                 <img src="../../public/img/icon-arrow.svg">
         </button>
     </form>
+    <MensajeError v-if="errorBusqueda" mensaje="Invalid Search"/>
+    </div>
 </template>
 
 <script>
     import { useStore } from 'vuex'
-    import { ref } from 'vue'
+    import { ref, computed } from 'vue'
+
+    import MensajeError from './MensajeError.vue'
 
     export default {
         name: "Buscador",
+        components: {
+            MensajeError
+        },
         setup() {
             const store = useStore()
             const busquedaUsuario = ref(null)
 
             return {
                 obtenerDatos : () => store.dispatch('obtenerDatos', busquedaUsuario.value),
+                errorBusqueda : computed(() => store.state.errorBusqueda),
                 busquedaUsuario,
             }
         }
