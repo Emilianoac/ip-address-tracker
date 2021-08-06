@@ -23,9 +23,10 @@ export default {
         position: relative;
         background-image: url("../../public/img/pattern-bg.png");
         background-size: cover;
+        height: 350px;
         text-align: center;
         color: white;
-        padding: 7em 1em;
+        padding: 1em;
         padding-top: 4em;
 
         .header__titulo {
