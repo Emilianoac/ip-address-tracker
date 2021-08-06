@@ -23,7 +23,7 @@ export default {
         position: relative;
         background-image: url("../../public/img/pattern-bg.png");
         background-size: cover;
-        height: 350px;
+        height: 290px;
         text-align: center;
         color: white;
         padding: 1em;

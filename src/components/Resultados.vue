@@ -44,7 +44,7 @@
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         margin: auto;
-        margin-top: 80px;
+        margin-top: 50px;
         padding: 2.4em 1em;
         border-radius: 9px;
         box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.267);
@@ -65,7 +65,7 @@
             }
 
             p {
-                font-size: 1.4em;
+                font-size: 1.2em;
                 font-weight: bold;
             }
 
