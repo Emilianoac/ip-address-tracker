@@ -25,18 +25,18 @@
 
     .error {
         display: block;
-        position: relative;
+        position: absolute;
         background-color: #ff0000bf;
         max-width: 300px;
         margin: auto;
         padding: 0.4em;
         border-radius: 4px;
-        position: absolute;
         left: 50%;
         width: 100%;
         transform: translate(-50%);
         top: 18px;
         font-size: 0.9em;
+        z-index: 2;
 
         .error__mensaje {
             margin: 0;
@@ -45,7 +45,7 @@
         .error__boton {
             position: absolute;
             top: 0;
-            right: 5px;
+            right: 7px;
             border: 0;
             background-color: transparent;
             color: white;
