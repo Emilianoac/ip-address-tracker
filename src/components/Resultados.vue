@@ -38,17 +38,14 @@
 <style lang="scss">
 
     .resultados {
-        position: absolute;
+        position: relative;
+        width: 100%;
         max-width: 1000px;
-        width: 90%;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        bottom: -50px;
-        left: 50%;
-        transform: translate(-50%, 0);
         margin: auto;
-        margin-top: -20px;
-        padding: 2.4em;
+        margin-top: 80px;
+        padding: 2.4em 1em;
         border-radius: 9px;
         box-shadow: 0px 4px 10px 2px rgba(0, 0, 0, 0.267);
         background-color: var(--color-principal-fondo);
@@ -82,10 +79,10 @@
 
         .resultados {
             grid-template-columns: 1fr;
-            bottom: -220px;
+            margin-top: 20px;
 
             .resultado {
-                font-size: 0.9em;
+                font-size: 0.85em;
                 text-align: center;
                 margin-bottom: 1.1em;
                 border: 0;
